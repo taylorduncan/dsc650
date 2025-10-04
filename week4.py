@@ -44,13 +44,11 @@ transformed = sentences_rdd.map(lambda s: s.upper())
 
  
 
-# Show some results (will go to YARN driver logs in cluster mode) 
+# Save to HDFS (change the path to something you have write access to) 
 
-for line in transformed.take(100): 
+output_path = "hdfs:///tmp/week4_output" 
 
-    print(line) 
-
- 
+transformed.saveAsTextFile(output_path) 
 
 spark.stop() 
 
